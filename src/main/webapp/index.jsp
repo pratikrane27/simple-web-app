@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div class="container">
-		<h3>Login Forms</h3>
+		<h3>Login Form</h3>
 		<form action="#" style="width: 40%">
 			<div class="form-group">
 				<label class="form-label">Username: </label>
