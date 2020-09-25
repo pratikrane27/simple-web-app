@@ -7,14 +7,14 @@ pipeline {
 		stage("Build") {
 			steps {
 				echo "Building Maven Project"
-				#maven goal
+				sh 'mvn clean package'
 				
 			}
 			post {
 				success {
 					echo "Artifact is generated succesfully"
 					echo "Archiving artifact"
-					#Artificat
+					archiveArtifacts artifacts: '**/*.war', followSymlinks: false
 				}
 				failure {
 					echo "Failed to generate an artifact"
@@ -24,11 +24,11 @@ pipeline {
 		}
 		stage("Analysis") {
 			steps {
-			
+				sh 'mvn checkstyle:checkstyle'
 			}
 			post {
 				success {
-					echo "SonarQube analysis is succesfull"
+					checkstyle canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
 				}
 				failure {
 					echo "Issue while  analysis"
@@ -37,11 +37,11 @@ pipeline {
 		}
 		stage("Deploy") {
 			steps {
-				#deploy to tomcat 
+				deploy adapters: [tomcat9(credentialsId: '46c78b6b-09fc-463a-9692-e2925cd47b78', path: '', url: 'http://ec2-18-220-1-125.us-east-2.compute.amazonaws.com:9999/')], contextPath: null, war: '**/*.war' 
 			}
 			post {
 				success {
-					#email notification
+					echo "Deployed successfully"
 				}
 				failure {
 					echo "failure to deploy"
