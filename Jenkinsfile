@@ -42,7 +42,7 @@ pipeline {
 			post {
 				success {
 					echo "Deployed successfully"
-					emailext body: 'Simple web app deployed successfully', recipientProviders: [buildUser()], subject: 'Web app Deployment', to: 'pratiksrane27@gmail.com'
+					mail bcc: '', body: 'Simple web app deployed succesfully', cc: '', from: '', replyTo: '', subject: 'Web app Deployment', to: 'pratiksrane27@gmail.com'
 				}
 				failure {
 					echo "failure to deploy"
