@@ -46,6 +46,7 @@ pipeline {
 				}
 				failure {
 					echo "failure to deploy"
+					mail bcc: '', body: 'Simple web app deployment failed ...please check', cc: '', from: '', replyTo: '', subject: 'Web app Deployment', to: 'pratiksrane27@gmail.com'
 				}
 			}
 		}
