@@ -37,7 +37,7 @@ pipeline {
 		}
 		stage("Deploy") {
 			steps {
-				deploy adapters: [tomcat9(credentialsId: '46c78b6b-09fc-463a-9692-e2925cd47b78', path: '', url: 'http://ec2-18-220-1-125.us-east-2.compute.amazonaws.com:9999/')], contextPath: null, war: '**/*.war' 
+				deploy adapters: [tomcat9(credentialsId: '46c78b6b-09fc-463a-9692-e2925cd47b78', path: '', url: 'http://ec2-18-218-32-12.us-east-2.compute.amazonaws.com:9999/')], contextPath: null, war: '**/*.war' 
 			}
 			post {
 				success {
